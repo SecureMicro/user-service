@@ -1,3 +1,4 @@
+import { ProjectEntity, UserEntity } from "@secure-micro/models";
 import "dotenv/config";
 import "reflect-metadata";
 import { DataSource } from "typeorm";
@@ -18,7 +19,10 @@ const AppDataSource = new DataSource({
   username: DB_USERNAME,
   password: DB_PASSWORD,
   database: DB_DATABASE_NAME,
-  entities: [],
+  entities: [
+    ProjectEntity,
+    UserEntity,
+  ],
   synchronize: false,
   logging: process.env.NODE_ENV ? true : false,
 });
