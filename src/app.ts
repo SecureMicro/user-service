@@ -24,14 +24,14 @@ class App {
   }
 
   configureRoutes() {
-    this.app.get(
-      "/ums/health-check",
-      (req: Request, res: Response, next: NextFunction) => {
-        return res.send("Health check route working");
-      }
-    );
+    // this.app.get(
+    //   '/ums/health-check',
+    //   (_req: Request, res: Response, _next: NextFunction) => {
+    //     return res.send("Health check route working");
+    //   }
+    // );
     // this.app.use('/ums/api/v1', routes);
-    this.app.use("*", (_req: Request, res: Response, next: NextFunction) => {
+    this.app.use("*", (_req: Request, _res: Response, next: NextFunction) => {
       return next(new Error("Routes not found"));
     });
     this.app.use(errorHandler);
