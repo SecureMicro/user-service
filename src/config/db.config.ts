@@ -1,4 +1,4 @@
-import { ProjectEntity, UserEntity } from "@secure-micro/models";
+import { ProjectEntity, RefreshTokenEntity, UserEntity } from "@secure-micro/models";
 import "dotenv/config";
 import "reflect-metadata";
 import { DataSource } from "typeorm";
@@ -22,9 +22,11 @@ const AppDataSource = new DataSource({
   entities: [
     ProjectEntity,
     UserEntity,
+    RefreshTokenEntity
   ],
-  synchronize: false,
-  logging: process.env.NODE_ENV ? true : false,
+  synchronize: true,
+  logging: NODE_ENV ? true : false,
+  ssl: true
 });
 
 export default AppDataSource;

@@ -5,6 +5,7 @@ import cors from "cors";
 import AppDataSource from "./config/db.config";
 import { logger } from "./common-module/utils/logger";
 import errorHandler from "./common-module/middleware/errorHandler";
+import { routes } from "./routes";
 
 class App {
   public app: Express;
@@ -24,13 +25,14 @@ class App {
   }
 
   configureRoutes() {
-    // this.app.get(
-    //   '/ums/health-check',
-    //   (_req: Request, res: Response, _next: NextFunction) => {
-    //     return res.send("Health check route working");
-    //   }
-    // );
-    // this.app.use('/ums/api/v1', routes);
+    this.app.get(
+      '/ums/health-check',
+      // @ts-ignore
+      (_req: Request, res: Response, _next: NextFunction) => {
+        return res.send("Health check route working");
+      }
+    );
+    this.app.use('/ums/api/v1', routes);
     this.app.use("*", (_req: Request, _res: Response, next: NextFunction) => {
       return next(new Error("Routes not found"));
     });
